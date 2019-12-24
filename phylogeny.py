@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Dec 22 14:54:54 2019
 
-@author: emanuel
-"""
+'''
+Created on Wed Nov 27 10:14:33 2019
+@author: Angelica
+'''
 
-from Bio import Phylo
 from Bio import ExPASy
 from Bio import SwissProt
 
