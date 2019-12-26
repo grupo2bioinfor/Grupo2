@@ -5,7 +5,7 @@ from Bio import ExPASy
 from Bio import SwissProt
 
               
-file = open("best_score.xml")       #abrir ficheiro com melhores resultados do blast
+file = open("best_score2.xml")       #abrir ficheiro com melhores resultados do blast
 lines = file.readlines()
 file.close()   
 l=[]
@@ -24,7 +24,7 @@ for i in l:
     if record.organism not in d.keys():     #para casos em que o mesmo organism aparece mais que uma vez no resultado do blast,
         d[record.organism.upper()] = record.sequence  #guardamos apenas o primeiro;
 
-seqs_file = open("seqs.fasta","w")      #guardar as sequencias num fasta    
+seqs_file = open("seqs2.fasta","w")      #guardar as sequencias num fasta    
 for key in d.keys():
     seqs_file.write(">" + key + "\n" + d[key] + "\n\n")
 
