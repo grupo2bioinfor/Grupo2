@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Dec  4 15:20:59 2019
 
-@author: Angelica
-"""
 
 #Análise de homologias por BLAST
 
@@ -76,5 +72,33 @@ for rec in blast_record:
                           hsp.sbjct +"\n"*2)
                           
 arq.close()
+
+arq=open('best_score2.xml','r')     #procura a função e guarda num dicionário, em que a key é cada função presente no blast,
+lines = arq.readlines()                 #e o valor é o número de vezes que essa função aparece
+  arq.close()
+   
+d={}
+                                  #try para caso não exista "RecName" num dos 
+for i in range(len(lines)):         #percorre todas as linhas do ficheiro
+    if "RecName: Full=" in lines[i]:        #se uma linha tiver a função - nome da proteína (RecName)
+        lines[i]=lines[i].split(';')        #transformar essa linha numa lista
+        for j in range(len(lines[i])):
+            if ' RecName: Full=' in lines[i][j]:        #usar search para encontrar o RecName
+                regex = 'Full=(.*)'
+                var=re.search(regex,lines[i][j]).group(1)
+                if var in d:                #cada função será uma chave do dicionário; o seu valor é o número de vezes que aparece
+                    d[var]+=1
+                else:
+                    d[var]=1
+
+start=0
+var=''
+for i in d.keys():                      #procurar a função que aparece mais vezes
+    if d[i]>start:
+        start=d[i]
+        var=i
+print(d)
+print("----------")
+print(var)   
 
 
