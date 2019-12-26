@@ -7,7 +7,7 @@ from Bio.Blast import NCBIWWW
 from Bio.Blast import NCBIXML
 from Bio import SearchIO
 from Bio import SeqIO
-from re import *
+import re
 
 file1=open('gene2.xls')
 lines=file1.readlines()
