@@ -77,17 +77,17 @@ lines = arq.readlines()
 arq.close()
 
 d={}
-for i in range(len(lines)):
-    if "AltName: Full=" in lines[i]:
-        lines[i]=lines[i].split(';')
-        for j in range(len(lines[i])):
-            if ' AltName: Full=' in lines[i][j]:
-                regex = 'Full=(.*)\['
-                var=re.search(regex,lines[i][j]).group(1)
-                if var in d:
-                    d[var]+=1
-                else:
-                    d[var]=1
+for i in range(len(lines)):         #percorre todas as linhas do ficheiro
+        if "RecName: Full=" in lines[i]:        #se uma linha tiver a função - nome da proteína (RecName)
+            lines[i]=lines[i].split(';')        #transformar essa linha numa lista
+            for j in range(len(lines[i])):
+                if ' RecName: Full=' in lines[i][j]:        #usar search para encontrar o RecName
+                    regex = 'Full=(.*)'
+                    var=re.search(regex,lines[i][j]).group(1)
+                    if var in d:                #cada função será uma chave do dicionário; o seu valor é o número de vezes que aparece
+                        d[var]+=1
+                    else:
+                        d[var]=1
 
 start=0
 var=''
