@@ -37,7 +37,7 @@ record = SeqIO.read("fstform.fasta", format="fasta")
 
 #SeqIO lê em formato fasta
 ##
-result_handle = NCBIWWW.qblast("blastp", "swissprot", record) #o ultimo parametro, pondo a seq, tinha de estar em fasta para ser lido
+result_handle = NCBIWWW.qblast("blastp", "swissprot", record.format("fasta") #o ultimo parametro, pondo a seq, tinha de estar em fasta para ser lido
 #blastp para proteinas
 #blastn para nucleotidos
 #utilizou-se para proteinas porque caso se tenha verificado a troca de um nucleotido, o aminoacido pode ser o mm-redundancia dos aminoacidos
