@@ -7,7 +7,7 @@ from Bio.Blast import NCBIWWW
 from Bio.Blast import NCBIXML
 from Bio import SearchIO
 from Bio import SeqIO
-
+from re import *
 
 file1=open('gene2.xls')
 lines=file1.readlines()
@@ -75,7 +75,7 @@ arq.close()
 
 arq=open('best_score2.xml','r')     #procura a função e guarda num dicionário, em que a key é cada função presente no blast,
 lines = arq.readlines()                 #e o valor é o número de vezes que essa função aparece
-  arq.close()
+arq.close()
    
 d={}
                                   #try para caso não exista "RecName" num dos 
