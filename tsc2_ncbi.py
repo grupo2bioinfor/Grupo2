@@ -28,10 +28,14 @@ for i in nucleotide_ids:
     
     d={}
     for feat in record.features:
+       feat_types.append(str(feat.type))
+       feat_locations.append(str(feat.location))
        if feat.type=='CDS':    #CDS para obter a coding sequence
            key_list=['product', 'gene', 'note', 'codon_start','protein_id','translation']
            for key in key_list:
                d[key]= ''.join(feat.qualifiers[key])
+    d["Features"] = ', '.join(feat_types)
+    d["Feature locations"] = ', '.join(feat_locations)
     keys_annot=['molecule_type','topology','organism','taxonomy','comment']
     for key in keys_annot:
         if key=='comment':
@@ -44,7 +48,8 @@ print(l)
 
     
 file=open('gene.xls', 'w')
-header=['isoform', 'gene', 'note', 'codon_start','protein_id','translation','molecule_type',
+header=['isoform', 'gene', 'note', 'codon_start','protein_id','translation',"Features", 
+            "Feature location", 'molecule_type',
         'topology','organism','taxonomy','comment']
 for col in header:
     file.write(col+'\t')
